@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import Generator from "./Generator.jsx";
 
-const TABS = ["Board", "Epics", "Issues", "Team"];
+const TABS = ["Board", "Epics", "Issues", "Team", "Requirements"];
 
 function useData() {
   const [data, setData] = useState(null);
@@ -36,7 +37,7 @@ function StoryCard({ story, epicsById }) {
       {epic && (
         <span className="epic-tag" style={{ background: epic.color }}>{epic.subject}</span>
       )}
-      <h4><span className="ref">#{story.ref}</span> {story.subject}</h4>
+      <h4><span className="ref">#{story.ref}</span> {story.subject} {story.isNew && <span className="new-badge">NEW</span>}</h4>
       <div className="card-meta">
         <span>{total ? `${done}/${total} tasks` : "no tasks"}</span>
         <span className="pts">{story.total_points ? `${story.total_points} pts` : "unestimated"}</span>
@@ -48,6 +49,9 @@ function StoryCard({ story, epicsById }) {
       {open && (
         <div className="detail">
           <p>{story.description}</p>
+          {story.criteria && (
+            <ul className="criteria">{story.criteria.map((c) => <li key={c}>{c}</li>)}</ul>
+          )}
           <ul>
             {story.tasks.map((t) => (
               <li key={t.ref}>
@@ -149,17 +153,49 @@ function Team({ data }) {
 export default function App() {
   const { data, error } = useData();
   const [tab, setTab] = useState("Board");
-  const epicsById = useMemo(
-    () => (data ? Object.fromEntries(data.epics.map((e) => [e.id, e])) : {}),
-    [data]
+  const [added, setAdded] = useState({ epics: [], stories: [] });
+
+  const merged = useMemo(
+    () => (data ? { ...data, epics: [...data.epics, ...added.epics], stories: [...data.stories, ...added.stories] } : null),
+    [data, added]
   );
+  const epicsById = useMemo(
+    () => (merged ? Object.fromEntries(merged.epics.map((e) => [e.id, e])) : {}),
+    [merged]
+  );
+
+  // Converts the generator's canned epics into board items (client-side only).
+  function addGenerated(genEpics) {
+    setAdded((prev) => {
+      let id = 1000 + prev.stories.length + prev.epics.length;
+      let ref = 100 + prev.stories.length + prev.epics.length;
+      const epics = [], stories = [];
+      for (const ge of genEpics) {
+        const epic = { id: ++id, ref: ++ref, subject: ge.subject, color: ge.color, description: ge.description, story_ids: [] };
+        for (const gs of ge.stories) {
+          const st = { id: ++id, ref: ++ref, subject: gs.subject, description: gs.description, criteria: gs.criteria,
+            status: "New", assignee: null, epic_id: epic.id, points: {}, total_points: gs.points, tasks: [], isNew: true };
+          epic.story_ids.push(st.id);
+          stories.push(st);
+        }
+        epics.push(epic);
+      }
+      return { epics: [...prev.epics, ...epics], stories: [...prev.stories, ...stories] };
+    });
+  }
 
   if (error) return <p className="status">Could not load demo data: {error.message}</p>;
   if (!data) return <p className="status">Loading…</p>;
 
   return (
     <>
-      <div className="banner">Read-only demo with sample data. Nothing here can be edited.</div>
+      <div className="banner">
+        Demo with sample data.{" "}
+        {added.stories.length > 0 ? (
+          <>{added.stories.length} generated stories added in this browser only.{" "}
+            <button className="link" onClick={() => setAdded({ epics: [], stories: [] })}>Reset demo</button></>
+        ) : "Try the Requirements tab to see epics and stories generated from pasted requirements."}
+      </div>
       <header className="top">
         <div>
           <h1>{data.project.name}</h1>
@@ -172,10 +208,11 @@ export default function App() {
         </nav>
       </header>
       <main>
-        {tab === "Board" && <Board data={data} epicsById={epicsById} />}
-        {tab === "Epics" && <Epics data={data} />}
+        {tab === "Board" && <Board data={merged} epicsById={epicsById} />}
+        {tab === "Epics" && <Epics data={merged} />}
         {tab === "Issues" && <Issues data={data} />}
         {tab === "Team" && <Team data={data} />}
+        {tab === "Requirements" && <Generator onAdd={addGenerated} />}
       </main>
     </>
   );
