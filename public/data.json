@@ -1,0 +1,419 @@
+{
+  "project": {
+    "name": "Customer Engagement",
+    "description": "Customer Engagement"
+  },
+  "columns": [
+    "New",
+    "Ready",
+    "In progress",
+    "Ready for test",
+    "Done"
+  ],
+  "epics": [
+    {
+      "id": 1,
+      "ref": 1,
+      "subject": "Digital Customer Sourcing",
+      "color": "#2099DB",
+      "description": "Acquire new retail banking customers through digital channels, referrals and partners, and route qualified leads to relationship managers.",
+      "story_ids": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "id": 2,
+      "ref": 28,
+      "subject": "Customer Onboarding & KYC",
+      "color": "#67CF00",
+      "description": "Verify identity, screen against sanctions lists, assess risk and open the account with a fully digital, auditable journey.",
+      "story_ids": [
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "id": 9,
+      "ref": 10,
+      "subject": "Capture leads from the website application form",
+      "description": "As a prospect, I can start an account application online so the bank captures my details as a lead.",
+      "status": "Done",
+      "status_color": "#A8E440",
+      "assignee": "Aisha Khan",
+      "epic_id": 1,
+      "points": {
+        "Front": "3",
+        "Back": "3",
+        "UX": "2"
+      },
+      "total_points": 8.0,
+      "tasks": [
+        {
+          "ref": 11,
+          "subject": "Build lead capture form UI",
+          "status": "Closed",
+          "assignee": "Aisha Khan"
+        },
+        {
+          "ref": 12,
+          "subject": "Create lead API and persistence",
+          "status": "Closed",
+          "assignee": "Marcus Chen"
+        },
+        {
+          "ref": 13,
+          "subject": "Add consent and privacy notice",
+          "status": "Closed",
+          "assignee": "Tomas Rivera"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "ref": 14,
+      "subject": "Referral programme for existing customers",
+      "description": "As a customer, I can share a referral link and be rewarded when a friend opens an account.",
+      "status": "Ready for test",
+      "status_color": "#E4CE40",
+      "assignee": "Marcus Chen",
+      "epic_id": 1,
+      "points": {
+        "Front": "2",
+        "Back": "5",
+        "Design": "2"
+      },
+      "total_points": 9.0,
+      "tasks": [
+        {
+          "ref": 15,
+          "subject": "Generate unique referral codes",
+          "status": "Closed",
+          "assignee": "Marcus Chen"
+        },
+        {
+          "ref": 16,
+          "subject": "Referral dashboard screen",
+          "status": "Ready for test",
+          "assignee": "Aisha Khan"
+        },
+        {
+          "ref": 17,
+          "subject": "Reward eligibility rules",
+          "status": "In progress",
+          "assignee": "Marcus Chen"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "ref": 18,
+      "subject": "Lead scoring and prioritisation for relationship managers",
+      "description": "As a relationship manager, I see leads ranked by conversion likelihood so I call the best ones first.",
+      "status": "In progress",
+      "status_color": "#E47C40",
+      "assignee": "Marcus Chen",
+      "epic_id": 1,
+      "points": {
+        "Back": "8",
+        "Front": "3"
+      },
+      "total_points": 11.0,
+      "tasks": [
+        {
+          "ref": 19,
+          "subject": "Define scoring model inputs",
+          "status": "Closed",
+          "assignee": "Priya Nair"
+        },
+        {
+          "ref": 20,
+          "subject": "Implement scoring service",
+          "status": "In progress",
+          "assignee": "Marcus Chen"
+        },
+        {
+          "ref": 21,
+          "subject": "Show score on lead list",
+          "status": "New",
+          "assignee": "Aisha Khan"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "ref": 22,
+      "subject": "Campaign attribution tracking (UTM)",
+      "description": "As marketing, I can see which campaigns produce completed applications.",
+      "status": "Ready",
+      "status_color": "#E44057",
+      "assignee": "Priya Nair",
+      "epic_id": 1,
+      "points": {
+        "Back": "3",
+        "Front": "1"
+      },
+      "total_points": 4.0,
+      "tasks": [
+        {
+          "ref": 23,
+          "subject": "Capture UTM parameters on landing",
+          "status": "New",
+          "assignee": "Aisha Khan"
+        },
+        {
+          "ref": 24,
+          "subject": "Attribution report endpoint",
+          "status": "New",
+          "assignee": "Marcus Chen"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "ref": 25,
+      "subject": "Branch and partner lead intake portal",
+      "description": "As a branch officer or partner, I can submit leads on behalf of a customer.",
+      "status": "New",
+      "status_color": "#70728F",
+      "assignee": "Priya Nair",
+      "epic_id": 1,
+      "points": {
+        "Front": "5",
+        "Back": "5",
+        "UX": "3",
+        "Design": "3"
+      },
+      "total_points": 16.0,
+      "tasks": [
+        {
+          "ref": 26,
+          "subject": "Portal wireframes",
+          "status": "New",
+          "assignee": "Tomas Rivera"
+        },
+        {
+          "ref": 27,
+          "subject": "Partner access roles",
+          "status": "New",
+          "assignee": "Marcus Chen"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "ref": 29,
+      "subject": "Digital identity verification with document and liveness check",
+      "description": "As a new customer, I can verify my identity using my ID document and a selfie.",
+      "status": "In progress",
+      "status_color": "#E47C40",
+      "assignee": "Marcus Chen",
+      "epic_id": 2,
+      "points": {
+        "Back": "8",
+        "Front": "5",
+        "UX": "3"
+      },
+      "total_points": 16.0,
+      "tasks": [
+        {
+          "ref": 30,
+          "subject": "Integrate ID document OCR provider",
+          "status": "In progress",
+          "assignee": "Marcus Chen"
+        },
+        {
+          "ref": 31,
+          "subject": "Capture flow with camera guidance",
+          "status": "In progress",
+          "assignee": "Aisha Khan"
+        },
+        {
+          "ref": 32,
+          "subject": "Liveness check fallback to branch",
+          "status": "New",
+          "assignee": "Tomas Rivera"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "ref": 33,
+      "subject": "Automated sanctions and PEP screening",
+      "description": "As compliance, every applicant is screened against sanctions and PEP lists before approval.",
+      "status": "Ready for test",
+      "status_color": "#E4CE40",
+      "assignee": "Marcus Chen",
+      "epic_id": 2,
+      "points": {
+        "Back": "8"
+      },
+      "total_points": 8.0,
+      "tasks": [
+        {
+          "ref": 34,
+          "subject": "Connect to screening service",
+          "status": "Closed",
+          "assignee": "Marcus Chen"
+        },
+        {
+          "ref": 35,
+          "subject": "Manual review queue for hits",
+          "status": "Ready for test",
+          "assignee": "Aisha Khan"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "ref": 36,
+      "subject": "Customer risk rating at onboarding",
+      "description": "As compliance, each customer receives a risk rating that drives due-diligence level.",
+      "status": "Ready",
+      "status_color": "#E44057",
+      "assignee": "Priya Nair",
+      "epic_id": 2,
+      "points": {
+        "Back": "5",
+        "Front": "2"
+      },
+      "total_points": 7.0,
+      "tasks": [
+        {
+          "ref": 37,
+          "subject": "Agree rating criteria with compliance",
+          "status": "In progress",
+          "assignee": "Priya Nair"
+        },
+        {
+          "ref": 38,
+          "subject": "Rating rules engine",
+          "status": "New",
+          "assignee": "Marcus Chen"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "ref": 39,
+      "subject": "Account opening with e-signature and welcome pack",
+      "description": "As a customer, I sign my account agreement digitally and receive my welcome pack instantly.",
+      "status": "New",
+      "status_color": "#70728F",
+      "assignee": "Priya Nair",
+      "epic_id": 2,
+      "points": {
+        "Front": "5",
+        "Back": "3",
+        "Design": "2"
+      },
+      "total_points": 10.0,
+      "tasks": [
+        {
+          "ref": 40,
+          "subject": "E-signature provider integration",
+          "status": "New",
+          "assignee": "Marcus Chen"
+        },
+        {
+          "ref": 41,
+          "subject": "Welcome pack email template",
+          "status": "New",
+          "assignee": "Lena Fischer"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "ref": 42,
+      "subject": "Onboarding progress tracker for customers and operations",
+      "description": "As a customer or ops agent, I can see which onboarding step is pending and why.",
+      "status": "New",
+      "status_color": "#70728F",
+      "assignee": "Priya Nair",
+      "epic_id": 2,
+      "points": {
+        "Front": "3",
+        "UX": "2",
+        "Design": "2"
+      },
+      "total_points": 7.0,
+      "tasks": [
+        {
+          "ref": 43,
+          "subject": "Progress tracker design",
+          "status": "New",
+          "assignee": "Lena Fischer"
+        },
+        {
+          "ref": 44,
+          "subject": "Status API for onboarding steps",
+          "status": "New",
+          "assignee": "Marcus Chen"
+        }
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "ref": 47,
+      "subject": "Confirm retention period for documents of rejected applications",
+      "description": "How long may we keep identity documents of applicants who were rejected? Needs a compliance answer.",
+      "type": "Question",
+      "severity": "Minor",
+      "priority": "Low",
+      "status": "Needs Info",
+      "assignee": "Priya Nair"
+    },
+    {
+      "ref": 46,
+      "subject": "Add Arabic language support to the onboarding form",
+      "description": "Many prospects prefer Arabic. The application form and error messages should support RTL layout.",
+      "type": "Enhancement",
+      "severity": "Normal",
+      "priority": "Normal",
+      "status": "New",
+      "assignee": "Aisha Khan"
+    },
+    {
+      "ref": 45,
+      "subject": "KYC document upload fails for PDFs larger than 5 MB",
+      "description": "Applicants uploading scanned PDFs over 5 MB get a generic error and cannot continue onboarding.",
+      "type": "Bug",
+      "severity": "Important",
+      "priority": "High",
+      "status": "In progress",
+      "assignee": "Marcus Chen"
+    }
+  ],
+  "team": [
+    {
+      "name": "Aisha Khan",
+      "role": "Front"
+    },
+    {
+      "name": "Lena Fischer",
+      "role": "Design"
+    },
+    {
+      "name": "Marcus Chen",
+      "role": "Back"
+    },
+    {
+      "name": "Priya Nair",
+      "role": "Product Owner"
+    },
+    {
+      "name": "Tomas Rivera",
+      "role": "UX"
+    }
+  ]
+}
